@@ -1,5 +1,8 @@
 using Footlink.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Footlink.Infrastructure.Repositories;
+using Footlink.Domain.Interfaces;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
