@@ -15,5 +15,11 @@
     <ProjectReference Include="..\Footlink.Application\Footlink.Application.csproj" />
     <ProjectReference Include="..\Footlink.Infrastructure\Footlink.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+  <None Update="appsettings.*.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
+
 
 </Project>
