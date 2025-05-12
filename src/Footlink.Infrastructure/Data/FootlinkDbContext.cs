@@ -20,6 +20,8 @@ namespace Footlink.Infrastructure.Data
                 entity.Property(c => c.Id).HasColumnName("id");
                 entity.Property(c => c.Name).HasColumnName("name").IsRequired().HasMaxLength(255);
                 entity.Property(c => c.VatNumber).HasColumnName("vat_number").IsRequired().HasMaxLength(50);
+                entity.Property(c => c.GroupName).HasColumnName("group_name").HasMaxLength(100);
+
             });
 
             modelBuilder.Entity<User>(entity =>
