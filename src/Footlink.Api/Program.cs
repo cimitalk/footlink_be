@@ -40,7 +40,7 @@ builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Test" )
 {
     app.UseSwagger();
     app.UseSwaggerUI();
