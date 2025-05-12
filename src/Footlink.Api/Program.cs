@@ -1,25 +1,45 @@
 using Footlink.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using Footlink.Infrastructure.Repositories;
 using Footlink.Domain.Interfaces;
-
+using Footlink.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add configuration per ambienti multipli
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<FootlinkDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Configurazione dinamica del DbContext
+var dbProvider = builder.Configuration["Database:Provider"];
 
+if (dbProvider == "InMemory")
+{
+    builder.Services.AddDbContext<FootlinkDbContext>(options =>
+        options.UseInMemoryDatabase("FootlinkTestDb"));
+}
+else if (dbProvider == "Postgres")
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    builder.Services.AddDbContext<FootlinkDbContext>(options =>
+        options.UseNpgsql(connectionString));
+}
+else
+{
+    throw new Exception("Unsupported DB provider: " + dbProvider);
+}
+
+// Dependency injection dei repository
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
-
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
