@@ -1,6 +1,12 @@
+
+
+using System;
+using System.Collections.Generic;
+
+
 namespace Footlink.Domain.Entities
 {
-    public class Companies
+    public class Company
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -14,6 +20,10 @@ namespace Footlink.Domain.Entities
     public string Phone { get; set; }
     public string Website { get; set; }
     public DateTime CreatedAt { get; set; }
+
+    // Navigazione
+    public ICollection<User> Users { get; set; }
+    public ICollection<Product> Products { get; set; }
 }
 
     

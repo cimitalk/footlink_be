@@ -1,6 +1,12 @@
+
+
+using System;
+using System.Collections.Generic;
+
+
 namespace Footlink.Domain.Entities
 {
-    public class Products
+    public class Product
     {
         public int Id { get; set; }
         public int CompanyId { get; set; }
@@ -11,5 +17,8 @@ namespace Footlink.Domain.Entities
         public decimal UnitPrice { get; set; }
         public string Currency { get; set; }
         public DateTime CreatedAt { get; set; }
+            // Navigazione
+    public Company Company { get; set; }
+    public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

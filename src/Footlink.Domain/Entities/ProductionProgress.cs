@@ -1,3 +1,9 @@
+
+
+using System;
+using System.Collections.Generic;
+
+
 namespace Footlink.Domain.Entities
 {
 public class ProductionProgress
@@ -14,6 +20,7 @@ public class ProductionProgress
 
     public DateTime UpdatedAt { get; set; }
 
+        // Navigazione
     public Order Order { get; set; }
 }
 }

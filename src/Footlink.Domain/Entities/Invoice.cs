@@ -1,3 +1,9 @@
+
+
+using System;
+using System.Collections.Generic;
+
+
 namespace Footlink.Domain.Entities
 {
 public class Invoice
@@ -17,7 +23,7 @@ public class Invoice
     public string Status { get; set; }
 
     public DateTime CreatedAt { get; set; }
-
+//Navigazione
     public Order Order { get; set; }
 }
 }

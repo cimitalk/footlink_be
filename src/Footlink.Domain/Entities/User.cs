@@ -1,6 +1,11 @@
+
+using System;
+using System.Collections.Generic;
+
+
 namespace Footlink.Domain.Entities
 {
-    public class Users
+    public class User
 {
     public int Id { get; set; }
     public int CompanyId { get; set; }
@@ -11,5 +16,7 @@ namespace Footlink.Domain.Entities
     public string Role { get; set; }
     public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
+    // Navigazione
+    public Company Company { get; set; }
 }
 }

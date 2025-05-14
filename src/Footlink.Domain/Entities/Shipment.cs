@@ -1,3 +1,9 @@
+
+
+using System;
+using System.Collections.Generic;
+
+
 namespace Footlink.Domain.Entities
 {
 public class Shipment
@@ -18,6 +24,7 @@ public class Shipment
 
     public DateTime CreatedAt { get; set; }
 
+        // Navigazione
     public Order Order { get; set; }
 }
 }
